@@ -5,7 +5,7 @@ class DBManager:
         """
         Получает список всех компаний и количество вакансий у каждой компании.
         :param cur: Объект cursor для выполнения запросов.
-        :return:
+        :return: Список кортежей с информацией из БД.
         """
         cur.execute('SELECT employer_name, vacancies_count FROM employers')
         raw: list[tuple] = cur.fetchall()
@@ -17,7 +17,7 @@ class DBManager:
         Получает список всех вакансий с указанием:
         названия компании, названия вакансии и зарплаты и ссылки на вакансию.
         :param cur: Объект cursor для выполнения запросов.
-        :return:
+        :return: Список кортежей с информацией из БД.
         """
         cur.execute("""
             SELECT employers.employer_name, vacancy_name, salary_from, salary_to, salary_currency,vacancies_url
@@ -32,7 +32,7 @@ class DBManager:
         """
         Получает среднюю зарплату по вакансиям.
         :param cur: Объект cursor для выполнения запросов.
-        :return:
+        :return: Список кортежей с информацией из БД.
         """
         cur.execute("""
                     SELECT ROUND(AVG((salary_from + salary_to) / 2), 2)
@@ -46,7 +46,7 @@ class DBManager:
         """
         Получает список всех вакансий, у которых зарплата выше средней по всем вакансиям.
         :param cur: Объект cursor для выполнения запросов.
-        :return:
+        :return: Список кортежей с информацией из БД.
         """
         cur.execute("""
                     SELECT *
@@ -63,7 +63,7 @@ class DBManager:
         Получает список всех вакансий, в названии которых содержатся переданные в метод слова, например python.
         :param cur: Объект cursor для выполнения запросов.
         :param key_word: Ключевое слово для запроса.
-        :return:
+        :return: Список кортежей с информацией из БД.
         """
         cur.execute("""
                     SELECT *

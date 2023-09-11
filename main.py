@@ -10,8 +10,8 @@ from src.utils import welcome, user_answer_check
 def main():
     # Получаем информацию о работодателях и их вакансиях
     employers_for_hh = HeadHuntersAPI()
-    emp_data: list[dict] = employers_for_hh.get_employers_info()
-    vac_data: list[dict] = employers_for_hh.get_vacancies_info()
+    emp_data: list[dict] = employers_for_hh.get_employers_info
+    vac_data: list[dict] = employers_for_hh.get_vacancies_info
 
     # Создание БД, подключение к ней
     db_name = 'hh_parser'
