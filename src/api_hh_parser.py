@@ -10,8 +10,8 @@ class HeadHuntersAPI:
     employers_id: list = [52389, 882, 1122462, 64174, 127256, 78638, 15478, 2180, 1740, 852361]  # id работодателей
     currency_dict: dict = {}  # Список валют
 
-    @staticmethod
-    def get_employers_info() -> list[dict]:
+    @property
+    def get_employers_info(self) -> list[dict]:
         """
         Получение информации о работодателях с API HH.
         :return: employers_info - список со словарями о работодателях.
@@ -38,6 +38,7 @@ class HeadHuntersAPI:
 
         return employers_info
 
+    @property
     def get_vacancies_info(self) -> list[dict]:
         """
         Получение информации о вакансиях, используя id работодателя.
@@ -59,7 +60,7 @@ class HeadHuntersAPI:
                         # Проверка данных о ЗП и перевод в рубли
                         if vac['salary'] is None:
                             salary_from, salary_to, salary_currency = 0, 0, 'RUB'
-                        elif vac['salary'] is not None:
+                        else:
                             s_from: int = vac['salary'].get('from') or 0
                             s_to: int = vac['salary'].get('to') or 0
                             s_currency: str = 'RUB' if vac['salary']['currency'] == 'RUR' else vac['salary']['currency']
